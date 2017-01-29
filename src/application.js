@@ -53,6 +53,7 @@ function populateGroup(material) {
         gui.params.leaf_width,
         gui.params.density,
         gui.params.curvature,
+        gui.params.curvature_border,
     );
 
     object = new THREE.Mesh(geometry, material);
