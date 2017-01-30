@@ -1,7 +1,7 @@
 import {Vector3, Face3, Geometry} from 'three';
 
 export default class LeafGeometry{
-    constructor(length, length_gambo, leaf_lenght, leaf_width, density, positive_curvature, positive_curvature_border){
+    constructor(length, length_gambo, leaf_lenght, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
         //leaf width e' un valore che va da 0 a 1. Zero e' la foglia il piu' stretta possibile
         // 1 e lo spazio a disposizione dopo aver calcolato la lunghezza
         let curvature = positive_curvature * -1.0;
@@ -46,7 +46,7 @@ export default class LeafGeometry{
                 faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex));
                 faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex));
                 key_last_vertex += 2;
-            }else{
+            } else {
                 y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
                 vertices.push(new Vector3((-width_gambo/2), y, current_z));
                 vertices.push(new Vector3((width_gambo/2), y, current_z));
@@ -61,7 +61,12 @@ export default class LeafGeometry{
             }
 
             // foglia dx, guardando dal gambo verso la fine
-            let z_foglia = current_z; // questo dovrai modificarlo poi, usando la curva
+            //let z_foglia = current_z + (space_between_leaves * leaf_inclination); // questo dovrai modificarlo poi, usando la curva
+            // let z_foglia = current_z; // questo dovrai modificarlo poi, usando la curva
+            // console.log(current_z);
+            // console.log(space_between_leaves);
+            // console.log("wtg"+ (current_z + space_between_leaves * 0.2));
+            let z_foglia = (current_z + (space_between_leaves*2) * leaf_inclination);
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (-width_gambo/2 + (x * -1)),
