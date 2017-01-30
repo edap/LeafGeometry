@@ -20,7 +20,7 @@ export default class LeafGeometry{
         let x_zero = this.getPointZero(curvature_border, length);
         let vertices = [];
         let faces = [];
-        if(length_gambo > 0){
+        if (length_gambo > 0) {
             vertices.push(new Vector3(-width_stem/2, y, current_z));
             vertices.push(new Vector3(width_stem/2, y, current_z));
             current_z += length_gambo;
@@ -35,7 +35,7 @@ export default class LeafGeometry{
         let apertura = leaf_z_space * leaf_width;
         let space_between_leaves = leaf_z_space - apertura;
         let n_leaves = (Math.abs(density - n_discard_leaf));
-        for(let i = 0; i< n_leaves; i++){
+        for (let i = 0; i< n_leaves; i++) {
             //disegna gambo tra le foglie
             if (length_gambo > 0) {
                 current_z += apertura;
