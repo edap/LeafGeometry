@@ -49,7 +49,6 @@ function populateGroup(material) {
     let geometry = new LeafGeometry(
         gui.params.length,
         gui.params.length_gambo,
-        gui.params.leaf_lenght,
         gui.params.leaf_width,
         gui.params.density,
         gui.params.curvature,

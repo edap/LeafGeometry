@@ -1,7 +1,7 @@
 import {Vector3, Face3, Geometry} from 'three';
 
 export default class LeafGeometry{
-    constructor(length, length_gambo, leaf_lenght, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
+    constructor(length, length_gambo, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
         //leaf width e' un valore che va da 0 a 1. Zero e' la foglia il piu' stretta possibile
         // 1 e lo spazio a disposizione dopo aver calcolato la lunghezza
         let curvature = positive_curvature * -1.0;
