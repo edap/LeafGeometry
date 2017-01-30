@@ -18,7 +18,7 @@ export default class LeafGeometry{
         let key_last_vertex = 0;
         let z_zero = length/2.0;
         let y_zero = this.getPointZero(curvature, length);
-        let x_zero = this.getPointZero(curvature, length);
+        let x_zero = this.getPointZero(curvature_border, length);
         let vertices = [];
         let faces = [];
         if(length_gambo > 0){
@@ -26,7 +26,6 @@ export default class LeafGeometry{
             vertices.push(new Vector3(width_gambo/2, y, current_z));
             current_z += length_gambo;
             y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
-            x = this.getValueOnParabola(curvature_border, current_z, z_zero, x_zero );
             vertices.push(new Vector3((-width_gambo/2), y, length_gambo));
             vertices.push(new Vector3((width_gambo/2), y, length_gambo));
             faces.push(new Face3(0, 2, 1));
@@ -65,7 +64,7 @@ export default class LeafGeometry{
             let z_foglia = current_z; // questo dovrai modificarlo poi, usando la curva
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
-                (-width_gambo/2 +x),
+                (-width_gambo/2 + (x * -1)),
                 this.getValueOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
             faces.push(new Face3(key_last_vertex+1, key_last_vertex-1, key_last_vertex-3));
@@ -74,14 +73,14 @@ export default class LeafGeometry{
             //foglia sx, guardando dal gambo verso la fine
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
-                (width_gambo/2 + (x * -1)),
+                (width_gambo/2 + x),
                 this.getValueOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
             faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex-3));
             key_last_vertex += 1;
 
             // disegna spazio incluso, a meno che questa non fosse l'ultima itearazione
-            if(!(i === n_leaves -1)){
+            if (!(i === n_leaves -1)) {
                 current_z += space_between_leaves;
                 y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
                 vertices.push(new Vector3((-width_gambo/2), y, current_z));
@@ -102,7 +101,7 @@ export default class LeafGeometry{
     }
 
     getValueOnParabola(curvature, z, z_zero, y_zero){
-        let y = curvature * ((z - z_zero)*(z-z_zero)) + y_zero;
+        let y = curvature * ((z - z_zero)*(z - z_zero)) + y_zero;
         return y;
     }
 

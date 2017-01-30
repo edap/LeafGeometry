@@ -15,8 +15,8 @@ export default class Gui extends DAT.GUI{
             length_gambo:4,
             leaf_lenght:5,
             leaf_width:0.5,
-            curvature: -0.05,
-            curvature_border: -0.05,
+            curvature: 0.05,
+            curvature_border: 0.05,
             border_curve: 0.002,
             density:2
         };
@@ -25,8 +25,8 @@ export default class Gui extends DAT.GUI{
         this.add(this.params, "length_gambo").min(0).max(10).step(1);
         this.add(this.params, "leaf_lenght").min(1).max(5).step(1);
         this.add(this.params, "leaf_width").min(0.1).max(1.0).step(0.1);
-        this.add(this.params, "curvature").min(0.001).max(0.010).step(0.001);
-        this.add(this.params, "curvature_border").min(0.001).max(0.010).step(0.001);
+        this.add(this.params, "curvature").min(0.001).max(0.10).step(0.001);
+        this.add(this.params, "curvature_border").min(0.001).max(0.10).step(0.001);
         this.add(this.params, "density").min(1).max(26).step(1);
     }
 
