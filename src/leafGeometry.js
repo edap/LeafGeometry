@@ -60,12 +60,7 @@ export default class LeafGeometry{
             }
 
             // foglia dx, guardando dal gambo verso la fine
-            //let z_foglia = current_z + (space_between_leaves * leaf_inclination); // questo dovrai modificarlo poi, usando la curva
-            // let z_foglia = current_z; // questo dovrai modificarlo poi, usando la curva
-            // console.log(current_z);
-            // console.log(space_between_leaves);
-            // console.log("wtg"+ (current_z + space_between_leaves * 0.2));
-            let z_foglia = (current_z + (space_between_leaves*2) * leaf_inclination);
+            let z_foglia = (current_z + (space_between_leaves*3) * leaf_inclination);
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (-width_stem/2 + (x * -1)),
