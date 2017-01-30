@@ -1,7 +1,7 @@
 import {Vector3, Face3, Geometry} from 'three';
 
 export default class LeafGeometry{
-    constructor(length, length_gambo, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
+    constructor(length, length_gambo, width_stem, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
         //leaf width e' un valore che va da 0 a 1. Zero e' la foglia il piu' stretta possibile
         // 1 e lo spazio a disposizione dopo aver calcolato la lunghezza
         let curvature = positive_curvature * -1.0;
@@ -9,7 +9,6 @@ export default class LeafGeometry{
         let n_discard_leaf = 1; //numero di foglie che non verranno aggiunte
         let available_length = length - length_gambo;
         let leaf_z_space = available_length/density; //length that each leaf occupy on the z axis, padding included
-        let width_gambo = 2; //larghezza fissa,per ora, che definisce quanto il gambo e' largo
 
         let y = 0; //alt the y's are for now on 0
         let x = 0; //alt the y's are for now on 0
@@ -22,12 +21,12 @@ export default class LeafGeometry{
         let vertices = [];
         let faces = [];
         if(length_gambo > 0){
-            vertices.push(new Vector3(-width_gambo/2, y, current_z));
-            vertices.push(new Vector3(width_gambo/2, y, current_z));
+            vertices.push(new Vector3(-width_stem/2, y, current_z));
+            vertices.push(new Vector3(width_stem/2, y, current_z));
             current_z += length_gambo;
             y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
-            vertices.push(new Vector3((-width_gambo/2), y, length_gambo));
-            vertices.push(new Vector3((width_gambo/2), y, length_gambo));
+            vertices.push(new Vector3((-width_stem/2), y, length_gambo));
+            vertices.push(new Vector3((width_stem/2), y, length_gambo));
             faces.push(new Face3(0, 2, 1));
             faces.push(new Face3(2, 3, 1));
             key_last_vertex = 3;
@@ -41,20 +40,20 @@ export default class LeafGeometry{
             if (length_gambo > 0) {
                 current_z += apertura;
                 y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
-                vertices.push(new Vector3((-width_gambo/2), y, current_z));
-                vertices.push(new Vector3((width_gambo/2), y, current_z));
+                vertices.push(new Vector3((-width_stem/2), y, current_z));
+                vertices.push(new Vector3((width_stem/2), y, current_z));
                 faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex));
                 faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex));
                 key_last_vertex += 2;
             } else {
                 y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
-                vertices.push(new Vector3((-width_gambo/2), y, current_z));
-                vertices.push(new Vector3((width_gambo/2), y, current_z));
+                vertices.push(new Vector3((-width_stem/2), y, current_z));
+                vertices.push(new Vector3((width_stem/2), y, current_z));
 
                 current_z += length_gambo;
                 y = this.getValueOnParabola(curvature, length_gambo, z_zero, y_zero );
-                vertices.push(new Vector3((-width_gambo/2), y, length_gambo));
-                vertices.push(new Vector3((width_gambo/2), y, length_gambo));
+                vertices.push(new Vector3((-width_stem/2), y, length_gambo));
+                vertices.push(new Vector3((width_stem/2), y, length_gambo));
                 faces.push(new Face3(0, 2, 1));
                 faces.push(new Face3(2, 3, 1));
                 key_last_vertex = 3;
@@ -69,7 +68,7 @@ export default class LeafGeometry{
             let z_foglia = (current_z + (space_between_leaves*2) * leaf_inclination);
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
-                (-width_gambo/2 + (x * -1)),
+                (-width_stem/2 + (x * -1)),
                 this.getValueOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
             faces.push(new Face3(key_last_vertex+1, key_last_vertex-1, key_last_vertex-3));
@@ -78,7 +77,7 @@ export default class LeafGeometry{
             //foglia sx, guardando dal gambo verso la fine
             x = this.getValueOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
-                (width_gambo/2 + x),
+                (width_stem/2 + x),
                 this.getValueOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
             faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex-3));
@@ -88,8 +87,8 @@ export default class LeafGeometry{
             if (!(i === n_leaves -1)) {
                 current_z += space_between_leaves;
                 y = this.getValueOnParabola(curvature, current_z, z_zero, y_zero );
-                vertices.push(new Vector3((-width_gambo/2), y, current_z));
-                vertices.push(new Vector3((width_gambo/2), y, current_z));
+                vertices.push(new Vector3((-width_stem/2), y, current_z));
+                vertices.push(new Vector3((width_stem/2), y, current_z));
                 faces.push(new Face3(key_last_vertex-3, key_last_vertex+1, key_last_vertex-2));
                 faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex-2));
                 key_last_vertex += 2;
