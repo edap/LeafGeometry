@@ -21,6 +21,7 @@ export default class Gui extends DAT.GUI{
             border_curve: 0.002,
             density:2
         };
+        this.remember(this.params);
 
         this.add(this.params, "length").min(20).max(600).step(1);
         this.add(this.params, "length_gambo").min(0).max(10).step(1);
