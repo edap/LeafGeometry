@@ -11,6 +11,7 @@ export default class Gui extends DAT.GUI{
         );
 
         this.params = {
+            material:"phong",
             length:20,
             length_stem:4,
             width_stem:2,
@@ -22,7 +23,7 @@ export default class Gui extends DAT.GUI{
             density:2
         };
         this.remember(this.params);
-
+        this.add(this.params, "material", ["phong", "wireframe"]);
         this.add(this.params, "length").min(0).max(30).step(1);
         this.add(this.params, "length_stem").min(0).max(10).step(1);
         this.add(this.params, "width_stem").min(0.2).max(2).step(0.1);

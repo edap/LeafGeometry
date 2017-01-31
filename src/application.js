@@ -57,7 +57,7 @@ function makeLeaf(material) {
         gui.params.leaf_inclination
     );
 
-    object = new THREE.Mesh(geometry, material);
+    object = new THREE.Mesh(geometry, materials[gui.params.material]);
     object.name = "leaf";
     scene.add(object);
 }
