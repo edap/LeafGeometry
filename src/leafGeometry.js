@@ -48,7 +48,6 @@ export default class LeafGeometry{
         faces.push(new Face3(2, 4, 5));
         faces.push(new Face3(3, 2, 5));
         key_last_vertex = 5;
-        let lunghezza_foglia = 3; // questo punto verra' poi calcolato usando le parabole
         let apertura = leaf_z_space * leaf_width;
         let space_between_leaves = leaf_z_space - apertura;
         for (let i = 0; i< n_leaves; i++) {
