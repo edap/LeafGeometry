@@ -12,7 +12,7 @@ export default class Gui extends DAT.GUI{
 
         this.params = {
             length:20,
-            length_gambo:4,
+            length_stem:4,
             width_stem:2,
             leaf_width:0.5,
             curvature: 0.05,
@@ -23,8 +23,8 @@ export default class Gui extends DAT.GUI{
         };
         this.remember(this.params);
 
-        this.add(this.params, "length").min(0).max(60).step(1);
-        this.add(this.params, "length_gambo").min(0).max(10).step(1);
+        this.add(this.params, "length").min(0).max(30).step(1);
+        this.add(this.params, "length_stem").min(0).max(10).step(1);
         this.add(this.params, "width_stem").min(0.2).max(2).step(0.1);
         this.add(this.params, "leaf_width").min(0.1).max(1.0).step(0.1);
         this.add(this.params, "curvature").min(0.001).max(0.10).step(0.001);

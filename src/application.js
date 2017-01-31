@@ -45,16 +45,16 @@ window.addEventListener('resize', function() {
     camera.updateProjectionMatrix();
 });
 
-function populateGroup(material) {
+function makeLeaf(material) {
     let geometry = new LeafGeometry(
         gui.params.length,
-        gui.params.length_gambo,
+        gui.params.length_stem,
         gui.params.width_stem,
         gui.params.leaf_width,
         gui.params.density,
         gui.params.curvature,
         gui.params.curvature_border,
-        gui.params.leaf_inclination,
+        gui.params.leaf_inclination
     );
 
     object = new THREE.Mesh(geometry, material);
@@ -63,7 +63,7 @@ function populateGroup(material) {
 }
 
 function render(){
-    populateGroup(material);
+    makeLeaf(material);
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     let selectedObject = scene.getObjectByName("leaf");

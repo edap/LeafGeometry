@@ -1,7 +1,16 @@
 import {Vector3, Face3, Geometry} from 'three';
 
 export default class LeafGeometry{
-    constructor(length, length_stem, width_stem, leaf_width, density, positive_curvature, positive_curvature_border, leaf_inclination){
+    constructor(
+                length=20,
+                length_stem=4,
+                width_stem=2,
+                leaf_width=0.5,
+                density=2,
+                positive_curvature= 0.05,
+                positive_curvature_border= 0.05,
+                leaf_inclination= 0.2
+    ){
         //leaf_width it's a value that goes from 0.1 to 1.0
         let curvature = positive_curvature * -1.0;
         let curvature_border = positive_curvature_border * -1.0;
