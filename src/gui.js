@@ -23,7 +23,7 @@ export default class Gui extends DAT.GUI{
         };
         this.remember(this.params);
 
-        this.add(this.params, "length").min(20).max(600).step(1);
+        this.add(this.params, "length").min(0).max(60).step(1);
         this.add(this.params, "length_gambo").min(0).max(10).step(1);
         this.add(this.params, "width_stem").min(0.2).max(2).step(0.1);
         this.add(this.params, "leaf_width").min(0.1).max(1.0).step(0.1);
