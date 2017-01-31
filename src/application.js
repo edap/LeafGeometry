@@ -20,7 +20,7 @@ this.controls = new OrbitControls(camera, renderer.domElement);
 
 //scene
 const materials = new CollectionMaterials;
-const material = materials["wireframe"];
+const material = materials["phong"];
 var object;
 var group = new THREE.Group();
 var lights = PointLights();

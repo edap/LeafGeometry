@@ -45,8 +45,8 @@ export default class LeafGeometry{
         faces.push(new Face3(1, 4, 5));
         faces.push(new Face3(2, 4, 0));
         faces.push(new Face3(1, 5, 3));
-        faces.push(new Face3(2, 4, 5));
-        faces.push(new Face3(3, 2, 5));
+        faces.push(new Face3(5, 4, 2));
+        faces.push(new Face3(2, 3, 5));
         key_last_vertex = 5;
         let apertura = leaf_z_space * leaf_width;
         let space_between_leaves = leaf_z_space - apertura;
