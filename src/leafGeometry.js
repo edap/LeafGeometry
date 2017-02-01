@@ -39,15 +39,21 @@ export default class LeafGeometry{
         width_stem -= stem_decrease_value;
         vertices.push(new Vector3((-width_stem/2), y, min_length_stem));
         vertices.push(new Vector3((width_stem/2), y, min_length_stem));
+        vertices.push(new Vector3((-width_stem/2), y-width_stem, min_length_stem));
+        vertices.push(new Vector3((width_stem/2), y-width_stem, min_length_stem));
         faces.push(new Face3(0, 1, 3));
         faces.push(new Face3(0, 3, 2));
         faces.push(new Face3(0, 4, 1));
         faces.push(new Face3(1, 4, 5));
         faces.push(new Face3(2, 4, 0));
         faces.push(new Face3(1, 5, 3));
-        faces.push(new Face3(5, 4, 2));
-        faces.push(new Face3(2, 3, 5));
-        key_last_vertex = 5;
+        faces.push(new Face3(4, 2, 6));
+        faces.push(new Face3(5, 7, 3));
+        faces.push(new Face3(5, 4, 6));
+        faces.push(new Face3(6, 7, 5));
+        faces.push(new Face3(2, 3, 7));
+        faces.push(new Face3(7, 6, 2));
+        key_last_vertex = 7;
         let apertura = leaf_z_space * leaf_width;
         let space_between_leaves = leaf_z_space - apertura;
         for (let i = 0; i< n_leaves; i++) {
@@ -57,27 +63,46 @@ export default class LeafGeometry{
             width_stem -= stem_decrease_value;
             vertices.push(new Vector3((-width_stem/2), y, current_z));
             vertices.push(new Vector3((width_stem/2), y, current_z));
-            faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex));
-            faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex));
-            key_last_vertex += 2;
-            // leaf dx, looking from the beginning of the stem in direction end of the leaf
+            vertices.push(new Vector3((-width_stem/2), y-width_stem, current_z));
+            vertices.push(new Vector3((width_stem/2), y-width_stem, current_z));
+            faces.push(new Face3(key_last_vertex-3, key_last_vertex-1, key_last_vertex));
+            faces.push(new Face3(key_last_vertex, key_last_vertex-2, key_last_vertex-3));
+            faces.push(new Face3(key_last_vertex-2, key_last_vertex-3, key_last_vertex+1));
+            faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex-2));
+            faces.push(new Face3(key_last_vertex+1, key_last_vertex+3, key_last_vertex+4));
+            faces.push(new Face3(key_last_vertex+4, key_last_vertex+2, key_last_vertex+1));
+            faces.push(new Face3(key_last_vertex-1, key_last_vertex+3, key_last_vertex+4));
+            faces.push(new Face3(key_last_vertex-1, key_last_vertex, key_last_vertex+4));
+            faces.push(new Face3(key_last_vertex+4, key_last_vertex+3, key_last_vertex-1));
+            key_last_vertex += 4;
+            //11
+            //leaf dx, looking from the beginning of the stem in direction end of the leaf
             let z_foglia = (current_z + (space_between_leaves*3) * leaf_inclination);
             x = this._getVauleOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (-width_stem/2 + (x * -1)),
                 this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
-            faces.push(new Face3(key_last_vertex+1, key_last_vertex-1, key_last_vertex-3));
+            faces.push(new Face3(key_last_vertex-7, key_last_vertex+1, key_last_vertex-3));
+            faces.push(new Face3(key_last_vertex+1, key_last_vertex-7, key_last_vertex-5));
+            faces.push(new Face3(key_last_vertex-1, key_last_vertex-3, key_last_vertex+1));
+            faces.push(new Face3(key_last_vertex-5, key_last_vertex-1, key_last_vertex+1));
             key_last_vertex += 1;
+            //12
 
-            //leaf sx
+            // //leaf sx
             x = this._getVauleOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (width_stem/2 + x),
                 this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ),
                 z_foglia));
-            faces.push(new Face3(key_last_vertex-1, key_last_vertex+1, key_last_vertex-3));
+
+            faces.push(new Face3(key_last_vertex-7, key_last_vertex-3, key_last_vertex+1));
+            faces.push(new Face3( key_last_vertex-7,key_last_vertex+1, key_last_vertex-5));
+            faces.push(new Face3(key_last_vertex+1, key_last_vertex-3, key_last_vertex-1));
+            faces.push(new Face3(key_last_vertex-1, key_last_vertex-5, key_last_vertex+1));
             key_last_vertex += 1;
+            //13
 
             //draw the stem between the leaves, unless it is not the last iteration
             if (!(i === n_leaves -1)) {
@@ -86,9 +111,23 @@ export default class LeafGeometry{
                 width_stem -= stem_decrease_value;
                 vertices.push(new Vector3((-width_stem/2), y, current_z));
                 vertices.push(new Vector3((width_stem/2), y, current_z));
-                faces.push(new Face3(key_last_vertex-3, key_last_vertex+1, key_last_vertex-2));
-                faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex-2));
-                key_last_vertex += 2;
+                vertices.push(new Vector3((-width_stem/2), y-width_stem, current_z));
+                vertices.push(new Vector3((width_stem/2), y-width_stem, current_z));
+
+                faces.push(new Face3(key_last_vertex-4, key_last_vertex-5, key_last_vertex+1));
+                faces.push(new Face3(key_last_vertex+1, key_last_vertex+2, key_last_vertex-4));
+                faces.push(new Face3(key_last_vertex+2, key_last_vertex+1, key_last_vertex+3));//front
+                faces.push(new Face3(key_last_vertex+3, key_last_vertex+3, key_last_vertex+2));
+                faces.push(new Face3(key_last_vertex-3, key_last_vertex-2, key_last_vertex+4));//bottom
+                faces.push(new Face3(key_last_vertex+4, key_last_vertex+3, key_last_vertex-3));
+
+                faces.push(new Face3(key_last_vertex+1, key_last_vertex-5, key_last_vertex-3));
+                faces.push(new Face3(key_last_vertex-3, key_last_vertex+3, key_last_vertex+1));
+
+                faces.push(new Face3(key_last_vertex-2, key_last_vertex-4, key_last_vertex+2));
+                faces.push(new Face3(key_last_vertex+2, key_last_vertex+4, key_last_vertex-2));
+                key_last_vertex += 4;
+                //17
             }
         }
 
