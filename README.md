@@ -1,8 +1,8 @@
-This repository contains a demo about the LeafGeometry.
+This repository contains a demo that uses the LeafGeometry.
 
 A demo is also online on my [website](http://davideprati.com/demo/LeafGeometry)
 
-It is for now es6 only, to use it in your project, simply download the file `src/LeafGeometry.js`, include it in your application and use this geometry to create a mesh, for example:
+For now it is es6 only, to use it in your project, download the file `src/LeafGeometry.js`, include it in your application and use this geometry to create a mesh, for example:
 
 ```javascript
 import LeafGeometry from './leafGeometry.js';
