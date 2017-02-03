@@ -24,7 +24,7 @@ scene.add(object);
 
 ```
 
-To try out this example, clone the repository, `cd` in it and:
+To try out this example, clone the repository and:
 
 ```javascript
 npm install
