@@ -12,19 +12,19 @@ export default class Gui extends DAT.GUI{
 
         this.params = {
             material:"physical",
-            length:20,
-            length_stem:4,
-            width_stem:2,
+            length:24,
+            length_stem:1,
+            width_stem:0.7,
             leaf_width:0.5,
-            leaf_up:1,
+            leaf_up:1.5,
             curvature: 0.05,
             curvature_border: 0.05,
-            leaf_inclination: 0.2,
+            leaf_inclination: 0.7,
             border_curve: 0.002,
-            density:15
+            density:21
         };
         this.remember(this.params);
-        this.add(this.params, "material", ["wireframe", "physical"]).onChange(this._updateMaterialFolder());
+        this.add(this.params, "material", ["wireframe", "physical"]); //.onChange(this._updateMaterialFolder());
         this.add(this.params, "length").min(0).max(40).step(1);
         this.add(this.params, "length_stem").min(0).max(10).step(1);
         this.add(this.params, "width_stem").min(0.2).max(2).step(0.1);
