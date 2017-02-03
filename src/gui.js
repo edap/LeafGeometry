@@ -11,7 +11,7 @@ export default class Gui extends DAT.GUI{
         );
 
         this.params = {
-            material:"phong",
+            material:"physical",
             length:20,
             length_stem:4,
             width_stem:2,
@@ -21,19 +21,19 @@ export default class Gui extends DAT.GUI{
             curvature_border: 0.05,
             leaf_inclination: 0.2,
             border_curve: 0.002,
-            density:2
+            density:15
         };
         this.remember(this.params);
-        this.add(this.params, "material", ["phong", "wireframe", "physical"]);
-        this.add(this.params, "length").min(0).max(30).step(1);
+        this.add(this.params, "material", ["wireframe", "physical"]).onChange(this._updateMaterialFolder());
+        this.add(this.params, "length").min(0).max(40).step(1);
         this.add(this.params, "length_stem").min(0).max(10).step(1);
         this.add(this.params, "width_stem").min(0.2).max(2).step(0.1);
         this.add(this.params, "leaf_width").min(0.1).max(1.0).step(0.1);
-        this.add(this.params, "leaf_up").min(1).max(5).step(0.5);
+        this.add(this.params, "leaf_up").min(0).max(5).step(0.5);
         this.add(this.params, "curvature").min(0.001).max(0.10).step(0.001);
         this.add(this.params, "curvature_border").min(0.001).max(0.10).step(0.001);
         this.add(this.params, "leaf_inclination").min(0.1).max(1.0).step(0.1);
-        this.add(this.params, "density").min(1).max(26).step(1);
+        this.add(this.params, "density").min(6).max(26).step(1);
     }
 
     addMaterials(materials){

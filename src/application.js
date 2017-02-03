@@ -8,9 +8,10 @@ import {PointLights} from './pointLights.js';
 const gui = new Gui();
 const scene = new THREE.Scene();
 const OrbitControls = require('three-orbit-controls')(THREE);
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0X74ccfc);
 
 document.body.style.margin =0;
 document.body.appendChild(renderer.domElement);
@@ -29,13 +30,13 @@ lights.map((light)=>{
 });
 
 //lights
-let ambientLight = new THREE.AmbientLight( 0x000000 );
+let ambientLight = new THREE.AmbientLight( 0xa33cff );
 scene.add( ambientLight );
-gui.addScene(scene, ambientLight, renderer);
+//gui.addScene(scene, ambientLight, renderer);
 gui.addMaterials(materials);
 
-var axisHelper = new THREE.AxisHelper( 50 );
-scene.add( axisHelper );
+//var axisHelper = new THREE.AxisHelper( 50 );
+//scene.add( axisHelper );
 
 window.addEventListener('resize', function() {
     var WIDTH = window.innerWidth,
