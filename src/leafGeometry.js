@@ -6,6 +6,7 @@ export default class LeafGeometry{
                 length_stem=4,
                 width_stem=2,
                 leaf_width=0.5,
+                leaf_up=1,
                 density=2,
                 positive_curvature= 0.05,
                 positive_curvature_border= 0.05,
@@ -15,7 +16,7 @@ export default class LeafGeometry{
         let curvature = positive_curvature * -1.0;
         let curvature_border = positive_curvature_border * -1.0;
         let min_length_stem = (length_stem <= 0) ? 0.1 : length_stem;
-        let n_discard_leaf = 1; //number of leaf skipped at the end
+        let n_discard_leaf = 4; //number of leaf skipped at the end
         let available_length = length - min_length_stem;
         let leaf_z_space = available_length/density; //length that each leaf occupies on the z axis, padding included
         let y = 0;
@@ -77,11 +78,12 @@ export default class LeafGeometry{
             key_last_vertex += 4;
             //11
             //leaf dx, looking from the beginning of the stem in direction end of the leaf
-            let z_foglia = (current_z + (space_between_leaves*3) * leaf_inclination);
+            let inclined_z = (current_z + (leaf_z_space*4) * leaf_inclination);
+            let z_foglia = (inclined_z >= length) ? length: inclined_z;
             x = this._getVauleOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (-width_stem/2 + (x * -1)),
-                this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ),
+                this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ) + leaf_up,
                 z_foglia));
             faces.push(new Face3(key_last_vertex-7, key_last_vertex+1, key_last_vertex-3));
             faces.push(new Face3(key_last_vertex+1, key_last_vertex-7, key_last_vertex-5));
@@ -94,7 +96,7 @@ export default class LeafGeometry{
             x = this._getVauleOnParabola(curvature_border, z_foglia, z_zero, x_zero );
             vertices.push(new Vector3(
                 (width_stem/2 + x),
-                this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ),
+                this._getVauleOnParabola(curvature, z_foglia, z_zero, y_zero ) + leaf_up,
                 z_foglia));
 
             faces.push(new Face3(key_last_vertex-7, key_last_vertex-3, key_last_vertex+1));
