@@ -34,6 +34,5 @@ npm build
 
 ![example](uno.png)
 ![example](due.png)
-![example](tre.png)
 ![example](tre1.png)
 ![example](quattro.png)
