@@ -16,6 +16,7 @@
 !.gitattributes
 !.gitignore
 !README.md
+!*.png
 !/src
 !/package.json
 !/webpack.config.js
