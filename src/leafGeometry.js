@@ -5,6 +5,7 @@ export default class LeafGeometry{
         options
     ){
         let opt = Object.assign(this._defaultOptions(), options);
+
         let length=opt.length;
         let length_stem=opt.length_stem;
         let width_stem=opt.width_stem;
@@ -145,11 +146,8 @@ export default class LeafGeometry{
     }
 
     assignUVs(geometry) {
-
         geometry.faceVertexUvs[0] = [];
-
         geometry.faces.forEach(function(face) {
-
             var components = ['x', 'y', 'z'].sort(function(a, b) {
                 return Math.abs(face.normal[a]) > Math.abs(face.normal[b]);
             });
@@ -165,7 +163,6 @@ export default class LeafGeometry{
             ]);
 
         });
-
         geometry.uvsNeedUpdate = true;
     }
 
