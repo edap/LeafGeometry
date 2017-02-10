@@ -46,20 +46,20 @@ window.addEventListener('resize', function() {
     camera.updateProjectionMatrix();
 });
 
+
 function makeLeaf(material) {
-    let geometry = new LeafGeometry(
-        gui.params.length,
-        gui.params.length_stem,
-        gui.params.width_stem,
-        gui.params.leaf_width,
-        gui.params.leaf_up,
-        gui.params.density,
-        gui.params.curvature,
-        gui.params.curvature_border,
-        gui.params.leaf_inclination
-    );
-
-
+    let opt = {
+        length: gui.params.length,
+        length_stem: gui.params.length_stem,
+        width_stem: gui.params.width_stem,
+        leaf_width: gui.params.leaf_width,
+        leaf_up: gui.params.leaf_up,
+        density: gui.params.density,
+        curvature: gui.params.curvature,
+        curvature_border: gui.params.curvature_border,
+        leaf_inclination: gui.params.leaf_inclination
+    };
+    let geometry = new LeafGeometry(opt);
     object = new THREE.Mesh(geometry, materials[gui.params.material]);
     object.name = "leaf";
     scene.add(object);
