@@ -16,6 +16,7 @@
 !.gitattributes
 !.gitignore
 !README.md
+!LICENSE.txt
 !*.png
 !/src
 !/package.json
